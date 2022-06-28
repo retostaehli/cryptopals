@@ -9,7 +9,7 @@ def freq() -> dict[str, float]:
         book = f.read()
     book_lowercase_alphanumeric = "".join(filter(lambda x: x in string.ascii_lowercase, book))
     char_count = Counter(book_lowercase_alphanumeric)
-    freqs = {letter: char_count[letter]/len(book_lowercase_alphanumeric) for letter in char_count}
+    freqs = {letter: char_count[letter] / len(book_lowercase_alphanumeric) for letter in char_count}
     return freqs
 
 def main() -> None:
