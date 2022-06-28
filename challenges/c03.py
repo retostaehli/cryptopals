@@ -33,13 +33,16 @@ def freq_score(potential_cleartext: bytes) -> float:
         score += diff   
     return score
 
-def main() -> None:
-    with open("../data/d03.txt", "r") as data:
-        hex_str = data.read()
+def break_single_byte_xor(hex_str: str) -> bytes:
     cipher_bytes = bytes.fromhex(hex_str)
     possible_cleartexts = xor_all_keybytes(cipher_bytes)
     probable_cleartext = find_probable_cleartext(possible_cleartexts)
-    print(f"Most probable cleartext is: {probable_cleartext.decode()}")
+    return probable_cleartext
+
+def main() -> None:
+    with open("../data/d03.txt", "r") as data:
+        hex_str = data.read()
+    print(f"Most probable cleartext is: {break_single_byte_xor(hex_str).decode()}")
 
 if __name__ == "__main__":
     main()
