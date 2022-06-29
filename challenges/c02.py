@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 
 def fixed_xor(b01: bytes, b02: bytes) -> bytes:
-    it = zip(b01, b02)
-    xor = [i ^ j for i, j in it]
+    xor = [i ^ j for i, j in zip(b01, b02)]
     return bytes(xor)
 def main() -> None:
     with open("../data/d02.txt", "r") as f:
