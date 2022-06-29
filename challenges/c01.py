@@ -2,7 +2,7 @@
 
 import base64
 def hex_to_b64(hex_str: str) -> str:
-    return base64.b64encode(bytes.fromhex(hex_str)).decode("utf-8")
+    return base64.b64encode(bytes.fromhex(hex_str)).decode()
 
 def main() -> None:
     with open("../data/d01.txt", "r") as f:
