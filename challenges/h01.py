@@ -7,7 +7,7 @@ from pprint import pprint
 def freq() -> dict[str, float]:
     with open("../data/book.txt", "r") as f:
         book = f.read()
-    book_lowercase_alphanumeric = "".join(filter(lambda x: x in string.ascii_lowercase, book))
+    book_lowercase_alphanumeric = "".join(filter(lambda x: x in string.ascii_lowercase or " ", book))
     char_count = Counter(book_lowercase_alphanumeric)
     freqs = {letter: char_count[letter] / len(book_lowercase_alphanumeric) for letter in char_count}
     return freqs
