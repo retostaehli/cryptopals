@@ -4,6 +4,8 @@ from h01 import freq
 from c02 import fixed_xor
 from collections import Counter
 
+freqs = freq()
+
 def xor_single_keybyte(key: int, cipher: bytes) -> bytes:
     return fixed_xor(bytes([key] * len(cipher)), cipher)
 
@@ -20,7 +22,6 @@ def find_probable_cleartext(data: list[bytes]) -> bytes:
     return most_probable
 
 def freq_score(potential_cleartext: bytes) -> float:
-    freqs = freq()
     potential_cleartext_str = ""
     score = 0.0
     for char in potential_cleartext:
