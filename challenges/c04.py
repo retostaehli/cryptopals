@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-from encodings import utf_8
-from gettext import find
 from c03 import break_single_byte_xor, find_probable_cleartext
 
 def detect_single_key_xor(cipher_texts: list[bytes]) -> bytes:
