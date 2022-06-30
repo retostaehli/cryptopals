@@ -26,7 +26,7 @@ def freq_score(potential_cleartext: bytes) -> float:
     potential_cleartext_str = ""
     score = 0.0
     for char in potential_cleartext:
-        if 1 > char < 127 :  # Decimal 0 - 8 and 127 are non-printable characters.
+        if 9 > char < 127 :  # Decimal 0 - 8 and 127 are non-printable characters.
             return float("inf")
         potential_cleartext_str += chr(char)
     for letter, frequency in freqs.items():
