@@ -12,5 +12,6 @@ class T07(unittest.TestCase):
         key = b"YELLOW SUBMARINE"
         plaintext = c07.decrypt_aes_ecb(ciphertext, key)
         self.assertEqual(plaintext.decode().split("\n")[0], "I'm back and I'm ringin' the bell ")
+        
 if __name__ == "__main__":
     unittest.main()
