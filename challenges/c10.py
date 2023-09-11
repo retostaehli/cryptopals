@@ -7,7 +7,6 @@ from Crypto.Cipher import AES
 def encrypt_aes_cbc(cleartext: bytes, iv: bytes, key: bytes) -> bytes:
     cipher = AES.new(key, AES.MODE_ECB)
     plainblocks = [cleartext[i:i+len(key)] for i in range(0, len(cleartext), len(key))]
-    print(f"Length of cleartext bytes is {len(cleartext)}")
     iv = iv
     ciphertext = b""
     for plainblock in plainblocks:
