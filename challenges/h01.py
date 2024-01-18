@@ -4,7 +4,7 @@ from collections import Counter
 import string
 from pprint import pprint
 
-def freq() -> dict[str, float]:
+def freq() -> "dict[str, float]":
     with open("../data/book.txt", "r") as f:
         book = f.read()
     book_lowercase_alphanumeric = "".join(filter(lambda x: x in string.ascii_lowercase or " ", book))

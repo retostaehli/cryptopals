@@ -9,10 +9,10 @@ freqs = freq()
 def xor_single_keybyte(key: int, cipher: bytes) -> bytes:
     return fixed_xor(bytes([key] * len(cipher)), cipher)
 
-def xor_all_keybytes(cipher_text: bytes) -> list[bytes]:
+def xor_all_keybytes(cipher_text: bytes) -> "list[bytes]":
     return [xor_single_keybyte(key,cipher_text) for key in range(256)]
 
-def find_probable_cleartext(data: list[bytes]) -> bytes:
+def find_probable_cleartext(data: "list[bytes]") -> bytes:
     best_score = float("inf")
     most_probable = data[0]
     for potential_cleartext in data:
