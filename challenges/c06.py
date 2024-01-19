@@ -8,7 +8,7 @@ import base64
 def hamming_distance(str1: bytes, str2: bytes) -> int:
     return bin(int.from_bytes(str1, "big") ^ int.from_bytes(str2, "big")).count("1")
 
-def find_probable_keysize(ciphertext: bytes) -> "list[int]":
+def find_probable_keysize(ciphertext: bytes) -> list[int]:
     min_distance = float("inf")
     candidates = {}
     for keysize in range(2, 41):
@@ -20,7 +20,7 @@ def find_probable_keysize(ciphertext: bytes) -> "list[int]":
             best_keysize = keysize
     return sorted(candidates, key=candidates.get)[:5]
 
-def transpose_blocks(ciphertext: bytes, blocksize: int) -> "list[bytes]":
+def transpose_blocks(ciphertext: bytes, blocksize: int) -> list[bytes]:
     keysize_blocks = [ciphertext[i:i+blocksize] for i in range(0, len(ciphertext), blocksize)]
     #print(f"Blocks split by keysize is: {keysize_blocks} with length of block1: {len(keysize_blocks[0])} block2: {len(keysize_blocks[1])} total number of blocks {len(keysize_blocks)} \n\n")
     transposed_blocks = []
@@ -32,7 +32,7 @@ def transpose_blocks(ciphertext: bytes, blocksize: int) -> "list[bytes]":
 def find_key(cleartext: bytes, ciphertext: bytes) -> bytes:
     return fixed_xor(cleartext, ciphertext)
 
-def break_repeating_key_xor(ciphertext: bytes) -> "list[bytes]":
+def break_repeating_key_xor(ciphertext: bytes) -> list[bytes]:
     probable_keysizes = find_probable_keysize(ciphertext)
     transposed_blocks = [transpose_blocks(ciphertext, keysize) for keysize in probable_keysizes]
     probable_plaintexts = []

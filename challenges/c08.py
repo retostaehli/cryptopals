@@ -4,7 +4,7 @@ from collections import Counter
 
 from numpy import block
 
-def detect_aes_ecb(ciphertexts: "list[bytes]", blocksize: int) -> "tuple[bytes, int]":
+def detect_aes_ecb(ciphertexts: list[bytes], blocksize: int) -> tuple[bytes, int]:
     max_occurence = 0
 
     for ciphertext in ciphertexts:
