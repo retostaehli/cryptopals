@@ -21,7 +21,7 @@ def detection_oracle(cleartext: str) -> bytes:
     cipher = AES.new(key, AES.MODE_ECB)
     return cipher.encrypt(cleartext_with_secret_bytes)
 
-def detect_blocksize() -> tuple[blocksize: int,input_size: int]:
+def detect_blocksize() -> tuple[int,int]:
     # Padding will ensure that the length will be a multiple of the block size. We increase the number of supplied input bytes until we notice a change in the ciphertext length (which means that the length got increase by the size of one block).
     empty_padded_length = len(detection_oracle(""))
     print(f"Length of ciphertext with empty string supplied is {empty_padded_length}")
