@@ -9,15 +9,11 @@ def hamming_distance(str1: bytes, str2: bytes) -> int:
     return bin(int.from_bytes(str1, "big") ^ int.from_bytes(str2, "big")).count("1")
 
 def find_probable_keysize(ciphertext: bytes) -> list[int]:
-    min_distance = float("inf")
     candidates = {}
     for keysize in range(2, 41):
         blocks = [ciphertext[i*keysize:i*keysize+keysize] for i in range(40)]
         hamming_distance_avg = sum(hamming_distance(blocks[i], blocks[i+1]) / keysize for i in range(39))
         candidates.update({keysize : hamming_distance_avg})
-        if min_distance > hamming_distance_avg:
-            min_distance = hamming_distance_avg
-            best_keysize = keysize
     return sorted(candidates, key=candidates.get)[:5]
 
 def transpose_blocks(ciphertext: bytes, blocksize: int) -> list[bytes]:
